@@ -45,8 +45,8 @@ public class Constants {
     public static final int kWordWrapWidth = 400;
 
     //main ui constants
-    public static final String kUserTutorial = "Type in your Student ID to login. If you do not have a Student ID," +
-            "\nenter any " + LocalDbActivity.kIdLengthFallback + " digit ID number.";
+    public static final String kUserTutorial = "Type in your phone number to login. If you do not have a phone number," +
+            "\nenter any " + LocalDbActivity.kIdLength + " digit ID number.";
     public static final int kMainStageWidth = 608;
     public static final int kMainStageHeight = 630;
     public static final String kApplicationName = "GrizzlyTime JavaFX Edition";

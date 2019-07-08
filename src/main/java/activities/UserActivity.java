@@ -10,6 +10,9 @@ import javafx.application.Platform;
 import scenes.GrizzlyScene;
 
 import java.time.LocalDateTime;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -237,7 +240,7 @@ public class UserActivity {
         int mentorIdLength = LocalDbActivity.kIdLengthFallback;
 
         try {
-            Integer.parseInt(userID);
+            new BigInteger(userID);
 
             if (Constants.kMentorFallback) {
                 return userID.length() == idLength || userID.length() == mentorIdLength;
