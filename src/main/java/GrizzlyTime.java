@@ -110,4 +110,8 @@ public class GrizzlyTime extends Application {
         LoggingUtils.log(Level.SEVERE, throwable);
         CommonUtils.exitApplication();
     }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }

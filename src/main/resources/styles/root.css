@@ -3,8 +3,8 @@ Main Screen CSS
  */
 
 #main {
-    -fx-font-family: "Calibri";
-    -fx-background-color: #D0BB61;
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #690a0f;
 }
 
 .button {
@@ -73,13 +73,13 @@ Main Screen CSS
     -fx-max-width: 250px;
     -fx-padding: 15px;
     -fx-border-radius: 3px;
-    -fx-background-color: #d9c575;
+    -fx-background-color: #a4969b;
 }
 
 #hyperlinkBottom {
     -fx-font-fill: #000000;
     -fx-font-size: 15px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #a4969b;
 }
 
 #creditsButton:hover {
@@ -140,24 +140,29 @@ Custom Dialog CSS
 */
 
 #customDialog {
-    -fx-background-color: #D0BB61;
+    -fx-background-color: #a4969b;
     -fx-padding: 10px;
     -fx-font-size: 16px;
+    -fx-font-fill: #a4969b;
 }
 
 .myDialog{
-    -fx-background-color: #D0BB61;
+    -fx-background-color: #a4969b;
+    -fx-text-fill: #a4969b;
 }
 .myDialog > *.button-bar > *.container{
-    -fx-background-color: #D0BB61;
+    -fx-background-color: #a4969b;
+    -fx-text-fill: #a4969b;
 }
 
 .myDialog > *.label.content{
     -fx-font-size: 20px;
     -fx-font-weight: bold;
+    -fx-text-fill: #a4969b;
 }
 .myDialog:header *.header-panel{
-    -fx-background-color: #d9c575;
+    -fx-background-color: #a4969b;
+    -fx-text-fill: #a4969b;
 }
 .myDialog:header *.header-panel *.label{
     -fx-font-size: 25px;
@@ -169,10 +174,12 @@ Account Dialog CSS
  */
 
 .accountDialog{
-    -fx-background-color: #D0BB61;
+    -fx-background-color: #a4969b;
+    -fx-text-fill: #a4969b;
 }
 .accountDialog > *.button-bar > *.container{
-    -fx-background-color: #D0BB61;
+    -fx-background-color: #a4969b;
+    -fx-text-fill: #a4969b;
 }
 
 .accountDialog > *.label.content{
@@ -180,7 +187,7 @@ Account Dialog CSS
     -fx-font-weight: bold;
 }
 .accountDialog:header *.header-panel{
-    -fx-background-color: #d9c575;
+    -fx-background-color: #a4969b;
 }
 .accountDialog:header *.header-panel *.label{
     -fx-font-size: 23px;
