@@ -10,10 +10,8 @@ import java.util.logging.Level;
 
 public class DatabaseUtils {
     /**
-     * @author Dalton Smith
-     * DatabaseUtils
-     * Helpers to make managing the google sheets API
-     * Horribly inefficient, but it works :)
+     * @author Dalton Smith DatabaseUtils Helpers to make managing the google sheets
+     *         API Horribly inefficient, but it works :)
      */
 
     private final DatabaseProcess dbProcess = new DatabaseProcess();
@@ -22,9 +20,9 @@ public class DatabaseUtils {
     private List<List<Object>> currentWorksheet;
     private List<List<Object>> registrationData;
 
-    //initial grab of worksheet data
+    // initial grab of worksheet data
     public DatabaseUtils() {
-        //initial data
+        // initial data
         currentWorksheet = dbProcess.returnWorksheetData(Constants.kMainSheet);
         mainWorksheet = currentWorksheet;
         loggedHours = dbProcess.returnWorksheetData(Constants.kLogSheet);
@@ -32,7 +30,7 @@ public class DatabaseUtils {
 
     }
 
-    //helper method called at beginning of each method to retrieve updated data
+    // helper method called at beginning of each method to retrieve updated data
     public void getUpdatedData() {
         currentWorksheet = dbProcess.returnWorksheetData(Constants.kMainSheet);
         mainWorksheet = currentWorksheet;
@@ -47,14 +45,14 @@ public class DatabaseUtils {
         dbProcess.updateSpreadSheetBatch(data, page);
     }
 
-    //update registration data sheet
-    private void updateStudentRegistrationData(){
+    // update registration data sheet
+    private void updateStudentRegistrationData() {
         if (LoginActivity.grizzlyPrompt) {
             registrationData = dbProcess.returnWorksheetData(Constants.kRegistrationSheet);
         }
     }
 
-    //grabs column data from sheet
+    // grabs column data from sheet
     public ArrayList<String> getColumnData(int column, int page) {
         setPage(page);
 
@@ -65,7 +63,7 @@ public class DatabaseUtils {
         ArrayList<String> result = new ArrayList<>();
 
         try {
-            //add various rows to ArrayList
+            // add various rows to ArrayList
             for (List row : mainWorksheet) {
                 try {
                     result.add(row.get(column).toString());
@@ -75,7 +73,7 @@ public class DatabaseUtils {
 
                 }
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             LoggingUtils.log(Level.WARNING, "IS THERE DATA IN WORKSHEET?");
 
         }
@@ -102,7 +100,7 @@ public class DatabaseUtils {
                         result.add(currentRow.get(x).toString());
 
                     } catch (Exception e) {
-                        break; //no more data;
+                        break; // no more data;
                     }
                     x++;
                 }
@@ -114,17 +112,17 @@ public class DatabaseUtils {
         return result;
     }
 
-    //sets cell data
+    // sets cell data
     public void setCellData(int row, int column, String data, int page) {
 
-        //set appropriate sheet
+        // set appropriate sheet
         setPage(page);
 
-        dbProcess.updateSpreadSheet(row+1, column+1, data, page);
+        dbProcess.updateSpreadSheet(row + 1, column + 1, data, page);
 
     }
 
-    //gets specific cell data
+    // gets specific cell data
     public String getCellData(int row, int column, int page) {
         if (isWorksheetsNotValid()) {
             return null;
@@ -145,7 +143,7 @@ public class DatabaseUtils {
         return null;
     }
 
-    //grab a a cell row based on its position in a column
+    // grab a a cell row based on its position in a column
     public int getCellRowFromColumn(String cellValue, int column, int page) {
 
         if (isWorksheetsNotValid()) {
@@ -163,8 +161,8 @@ public class DatabaseUtils {
         return -1;
     }
 
-    //grab the next empty cell from first row
-    public int nextEmptyCellColumn(int page){
+    // grab the next empty cell from first row
+    public int nextEmptyCellColumn(int page) {
 
         setPage(page);
 
@@ -192,17 +190,17 @@ public class DatabaseUtils {
 
     private void setPage(int page) {
         switch (page) {
-            case Constants.kMainSheet:
-                mainWorksheet = currentWorksheet;
-                break;
-            case Constants.kLogSheet:
-                mainWorksheet = loggedHours;
-                break;
-            case Constants.kRegistrationSheet:
-                mainWorksheet = registrationData;
-                break;
-            default:
-                break;
+        case Constants.kMainSheet:
+            mainWorksheet = currentWorksheet;
+            break;
+        case Constants.kLogSheet:
+            mainWorksheet = loggedHours;
+            break;
+        case Constants.kRegistrationSheet:
+            mainWorksheet = registrationData;
+            break;
+        default:
+            break;
         }
     }
 

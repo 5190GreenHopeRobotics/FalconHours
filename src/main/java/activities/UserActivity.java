@@ -160,6 +160,14 @@ public class UserActivity {
 
     }
 
+    // get user name
+    public String getUserName(String userID) {
+        int userRow = dbUtils.getCellRowFromColumn(userID, Constants.kStudentIdColumn, Constants.kMainSheet);
+        String firstName = dbUtils.getCellData(userRow, Constants.kFirstNameColumn, Constants.kMainSheet);
+        String lastName = dbUtils.getCellData(userRow, Constants.kLastNameColumn, Constants.kMainSheet);
+        return firstName + " " + lastName;
+    }
+
     //logout the user
     public void logoutUser(String userID) {
         Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging out user: " + userID));
@@ -222,7 +230,7 @@ public class UserActivity {
             //logout the user
             dbUtils.setCellData(userRow, Constants.kLoggedInColumn, "FALSE", Constants.kMainSheet);
 
-            if(err) {
+            if (err) {
                 Platform.runLater(() -> {
                     GrizzlyScene.setMessageBoxText("You forgot to log out! Please re-login!");
                     GrizzlyScene.clearInput();

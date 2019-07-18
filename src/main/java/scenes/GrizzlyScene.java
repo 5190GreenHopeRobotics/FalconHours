@@ -156,7 +156,7 @@ public class GrizzlyScene {
         creditsLink.setOnAction(event -> showCredits());
 
         optionsLink.setOnAction(event -> {
-            Stage stage = (Stage)optionsLink.getScene().getWindow();
+            Stage stage = (Stage) optionsLink.getScene().getWindow();
             if (KeyActivity.isFullscreen) {
                 stage.setFullScreen(false);
                 KeyActivity.isFullscreen = false;
@@ -195,15 +195,24 @@ public class GrizzlyScene {
 
         }
 
+        // make sure user exists, if not, force creation
+        try {
+            userActivity.isUserLoggedIn(studentIDBox.getText());
+        } catch (Exception ignored) {
+        }
+
         if (!handsFreeMode) {
+
             //confirm that the user wants to login/logout
-            if (alertUtils.confirmInput("Confirm login/logout of user: " + studentIDBox.getText())) {
+            if (alertUtils.confirmInput(
+                    "Confirm login/logout of user: " + userActivity.getUserName(studentIDBox.getText()) +
+                            " (" + studentIDBox.getText() + ")")) {
                 loginUser();
             } else {
                 setMessageBoxText("");
             }
 
-        //show no prompts
+            //show no prompts
         } else {
             loginUser();
         }
@@ -270,6 +279,8 @@ public class GrizzlyScene {
         }
     }
 
-    public static void clearInput() { studentIDBox.clear(); }
+    public static void clearInput() {
+        studentIDBox.clear();
+    }
 
 }
