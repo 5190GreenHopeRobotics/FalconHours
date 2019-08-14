@@ -21,7 +21,7 @@ public class LogoutActivity {
 
     }
 
-    public void logoutUserWithHours(String userID, int userRow, LocalTime totalHoursTime, String totalTimeFromDifference) {
+    public void logoutUserWithHours(String userID, String userName, int userRow, LocalTime totalHoursTime, String totalTimeFromDifference) {
         //grab the current total hours
         String totalHours = dbUtils.getCellData(userRow, Constants.kTotalHoursColumn, Constants.kMainSheet);
         String[] prevTotalTime;
@@ -95,7 +95,7 @@ public class LogoutActivity {
 
         //show user logout text
         Platform.runLater(() -> {
-            GrizzlyScene.setMessageBoxText("Logged out user: " + userID);
+            GrizzlyScene.setMessageBoxText("Logged out user: " + userName);
             GrizzlyScene.clearInput();
         });
 

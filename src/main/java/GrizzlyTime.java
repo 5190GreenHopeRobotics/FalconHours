@@ -98,7 +98,7 @@ public class GrizzlyTime extends Application {
         keyHandlers.setKeyHandlers(scene, primaryStage);
 
         //check for updates
-        updater.checkUpdates();
+        // updater.checkUpdates();
 
         //create UI and logic
         SceneManager.updateScene(Constants.kMainSceneState);

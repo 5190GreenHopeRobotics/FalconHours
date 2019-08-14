@@ -173,6 +173,7 @@ public class GrizzlyScene {
 
     //helper login method
     private void confirmLogin() {
+        System.out.println("Received Entry Listener");
         setMessageBoxText("Processing...");
 
         //confirm the ID is vslid
@@ -237,11 +238,11 @@ public class GrizzlyScene {
             try {
                 //check if the user is logged in, and that user exists
                 if (!(userActivity.isUserLoggedIn(studentIDBox.getText()))) {
-                    LoggingUtils.log(Level.INFO, "Logging in: " + studentIDBox.getText());
+                    LoggingUtils.log(Level.INFO, "Logging in: " + userActivity.getUserName(studentIDBox.getText()));
                     userActivity.loginUser(studentIDBox.getText());
 
                 } else {
-                    LoggingUtils.log(Level.INFO, "Logging out: " + studentIDBox.getText());
+                    LoggingUtils.log(Level.INFO, "Logging out: " + userActivity.getUserName(studentIDBox.getText()));
                     userActivity.logoutUser(studentIDBox.getText());
 
                 }

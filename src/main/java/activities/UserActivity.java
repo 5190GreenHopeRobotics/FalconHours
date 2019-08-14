@@ -139,7 +139,8 @@ public class UserActivity {
 
     //login our user
     public void loginUser(String userID) {
-        Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging in user: " + userID));
+        var name = getUserName(userID);
+        Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging in user: " + name));
 
         //grab the current time from system and format it into string
         LocalDateTime loginTime = LocalDateTime.now();
@@ -152,7 +153,7 @@ public class UserActivity {
             loginActivity.loginUser(userRow, formattedLoginTime);
 
             Platform.runLater(() -> {
-                GrizzlyScene.setMessageBoxText("Successfully logged in user: " + userID);
+                GrizzlyScene.setMessageBoxText("Successfully logged in user: " + name);
                 GrizzlyScene.clearInput();
             });
 
@@ -170,7 +171,8 @@ public class UserActivity {
 
     //logout the user
     public void logoutUser(String userID) {
-        Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging out user: " + userID));
+        var name = getUserName(userID);
+        Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging out user: " + name));
 
         //grab the row the user is on
         int userRow = dbUtils.getCellRowFromColumn(userID, Constants.kStudentIdColumn, Constants.kMainSheet);
@@ -224,7 +226,7 @@ public class UserActivity {
             }
 
             if (!err) {
-                logoutActivity.logoutUserWithHours(userID, userRow, totalHoursTime, totalTimeFromDifference);
+                logoutActivity.logoutUserWithHours(userID, name, userRow, totalHoursTime, totalTimeFromDifference);
             }
 
             //logout the user
