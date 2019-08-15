@@ -169,6 +169,18 @@ public class UserActivity {
         return firstName + " " + lastName;
     }
 
+    public String getUserInitials(String userID) {
+      final var name = getUserName(userID);
+      String[] parts = name.split(" ");
+
+      StringBuilder result = new StringBuilder();
+      for (String part : parts) {
+        result.append(part.charAt(0));
+      }
+
+      return result.toString().toUpperCase();
+    }
+
     //logout the user
     public void logoutUser(String userID) {
         var name = getUserName(userID);
@@ -226,7 +238,7 @@ public class UserActivity {
             }
 
             if (!err) {
-                logoutActivity.logoutUserWithHours(userID, name, userRow, totalHoursTime, totalTimeFromDifference);
+                logoutActivity.logoutUserWithHours(userID, getUserInitials(userID), userRow, totalHoursTime, totalTimeFromDifference);
             }
 
             //logout the user
