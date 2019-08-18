@@ -140,6 +140,7 @@ public class UserActivity {
     //login our user
     public void loginUser(String userID) {
         var name = getUserName(userID);
+        var initials = getUserInitials(userID);
         Platform.runLater(() -> GrizzlyScene.setMessageBoxText("Logging in user: " + name));
 
         //grab the current time from system and format it into string
@@ -153,7 +154,7 @@ public class UserActivity {
             loginActivity.loginUser(userRow, formattedLoginTime);
 
             Platform.runLater(() -> {
-                GrizzlyScene.setMessageBoxText("Successfully logged in user: " + name);
+                GrizzlyScene.setMessageBoxText("Successfully logged in user: " + initials);
                 GrizzlyScene.clearInput();
             });
 
