@@ -1,5 +1,12 @@
 package activities;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+
 import databases.BatchUpdateData;
 import databases.DatabaseUtils;
 import exceptions.CancelledUserCreationException;
@@ -9,16 +16,8 @@ import helpers.LoggingUtils;
 import javafx.application.Platform;
 import scenes.GrizzlyScene;
 
-import java.time.LocalDateTime;
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.logging.Level;
-
 public class UserActivity {
+    private static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     /**
      * @author Dalton Smith
      * UserActivity class
@@ -27,11 +26,8 @@ public class UserActivity {
 
     private DatabaseUtils dbUtils = new DatabaseUtils();
     private AlertUtils alertUtils = new AlertUtils();
-
     private LogoutActivity logoutActivity = new LogoutActivity(dbUtils);
     private LoginActivity loginActivity = new LoginActivity(dbUtils);
-
-    private static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 
     //check if user is logged in
     public boolean isUserLoggedIn(String userID) throws Exception {
@@ -171,15 +167,15 @@ public class UserActivity {
     }
 
     public String getUserInitials(String userID) {
-      final var name = getUserName(userID);
-      String[] parts = name.split(" ");
+        final var name = getUserName(userID);
+        String[] parts = name.split(" ");
 
-      StringBuilder result = new StringBuilder();
-      for (String part : parts) {
-        result.append(part.charAt(0));
-      }
+        StringBuilder result = new StringBuilder();
+        for (String part : parts) {
+            result.append(part.charAt(0));
+        }
 
-      return result.toString().toUpperCase();
+        return result.toString().toUpperCase();
     }
 
     //logout the user
@@ -207,8 +203,9 @@ public class UserActivity {
 
             boolean err = false;
 
+
             if (diffHours < 0) {
-                LoggingUtils.log(Level.SEVERE, "Well this is awkward, difference shouldn't be negative: " + diffHours + diffMinutes + diffSeconds);
+//                LoggingUtils.log(Level.SEVERE, "Well this is awkward, difference shouldn't be negative: " + diffHours + diffMinutes + diffSeconds);
                 err = true;
             }
 
@@ -222,9 +219,6 @@ public class UserActivity {
                 diffMinutes = 60 - Math.abs(diffMinutes);
             }
 
-            String totalTimeFromDifference = String.format("%02d:%02d:%02d", diffHours, diffMinutes, diffSeconds);
-
-            LocalTime totalHoursTime = LocalTime.parse(totalTimeFromDifference);
 
             if (loginTime.getYear() == logoutTime.getYear()) {
                 if (loginTime.getMonth() == logoutTime.getMonth()) {
@@ -239,6 +233,10 @@ public class UserActivity {
             }
 
             if (!err) {
+                String totalTimeFromDifference = String.format("%02d:%02d:%02d", diffHours, diffMinutes, diffSeconds);
+
+                LocalTime totalHoursTime = LocalTime.parse(totalTimeFromDifference);
+
                 logoutActivity.logoutUserWithHours(userID, getUserInitials(userID), userRow, totalHoursTime, totalTimeFromDifference);
             }
 
