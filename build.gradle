@@ -11,7 +11,7 @@ plugins {
 
 group 'GrizzlyTime'
 version '2.3.0'
-mainClassName = "Main"
+mainClassName = "GrizzlyTime"
 
 repositories {
     mavenCentral()
